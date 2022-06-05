@@ -12,3 +12,9 @@ https://lil-chevy.github.io/weatherApp/
 ## Contributors
 
 -Jack Nowaczewski
+
+## api keys used
+
+https://api.openweathermap.org/data/2.5/onecall
+
+https://api.openweathermap.org/data/2.5/weather
