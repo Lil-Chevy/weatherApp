@@ -37,7 +37,7 @@ var buttonClickHandler = function (event) {
 var getUserRepos = function (user) {
   // format the github api url
   var apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" +
     user +
     ",us&appid=4faae247520c12ef60154936f5f00888";
 
@@ -48,7 +48,12 @@ var getUserRepos = function (user) {
       if (response.ok) {
         console.log(response);
         response.json().then(function (data) {
-          console.log(data);
+          console.log("<<<<apiUrl fetched = DATA>>>>", data);
+          // information to append for cards
+          console.log("temp: ", data.main.temp + " F");
+          console.log("wind: ", data.wind.speed + " MPH");
+          console.log("Humidity: ", data.main.humidity + " %");
+          console.log("weather: ", data.weather[0].description);
           displayRepos(data, user);
         });
       } else {
