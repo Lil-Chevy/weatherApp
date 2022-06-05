@@ -63,9 +63,9 @@ var getUserRepos = function (user) {
 var getFeaturedRepos = function (language) {
   // format the github api url
   var apiUrl =
-    "https://api.github.com/search/repositories?q=" +
-    language +
-    "+is:featured&sort=help-wanted-issues";
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    user +
+    ",us&appid=4faae247520c12ef60154936f5f00888";
 
   // make a get request to url
   fetch(apiUrl).then(function (response) {

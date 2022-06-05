@@ -1,5 +1,6 @@
 #Weather App
 ![screenshot](./assets/images/screenshot.PNG)
+![screenshot](./assets/images/acceptanceCriteria.PNG)
 
 ## Purpose
 
