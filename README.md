@@ -1,5 +1,5 @@
 #Weather App
-![screenshot](./weatherApp/assets/images/screenshot.PNG)
+![screenshot](./assets/images/screenshot.PNG)
 
 ## Purpose
 
