@@ -55,6 +55,26 @@ var getUserRepos = function (user) {
           console.log("Humidity: ", data.main.humidity + " %");
           console.log("weather: ", data.weather[0].description);
           displayRepos(data, user);
+          // appending weather card
+          var weatherCard = document.createElement("card");
+          weatherCard.classList = "weatherCard";
+          repoContainerEl.appendChild(weatherCard);
+          // appending temp box to weather card.
+          var tempBox = document.createElement("div");
+          tempBox.classList = "tempBox";
+          weatherCard.appendChild(tempBox);
+          // add information to weather card  (need seperate divs)
+          tempBox.innerHTML = "temp: " + data.main.temp + " f";
+          // appending wind speed
+          var windBox = document.createElement("div");
+          windBox.classList = "windBox";
+          weatherCard.appendChild(windBox);
+          windBox.innerHTML = "Wind: " + data.wind.speed + " MPH";
+          // appending Humidity:
+          var humidBox = document.createElement("div");
+          humidBox.classList = "humidBox";
+          weatherCard.appendChild(humidBox);
+          humidBox.innerHTML = "Humidity: " + data.main.humidity + "%";
         });
       } else {
         alert("Error: GitHub User Not Found");
