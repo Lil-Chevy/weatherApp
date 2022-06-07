@@ -59,11 +59,19 @@ var getUserRepos = function (user) {
           var weatherCard = document.createElement("card");
           weatherCard.classList = "weatherCard";
           repoContainerEl.appendChild(weatherCard);
+          // appending weather icon
+          var iconBox = document.createElement("div");
+          iconBox.classList = "iconBox";
+          weatherCard.appendChild(iconBox);
+          var icons = data.weather[0].icon;
+          var insertIcon =
+            "http://openweathermap.org/img/wn/" + icons + "@2x.png";
+          iconBox.innerHTML = "<img src=" + insertIcon + ">";
+
           // appending temp box to weather card.
           var tempBox = document.createElement("div");
           tempBox.classList = "tempBox";
           weatherCard.appendChild(tempBox);
-          // add information to weather card  (need seperate divs)
           tempBox.innerHTML = "temp: " + data.main.temp + " f";
           // appending wind speed
           var windBox = document.createElement("div");
@@ -77,11 +85,11 @@ var getUserRepos = function (user) {
           humidBox.innerHTML = "Humidity: " + data.main.humidity + "%";
         });
       } else {
-        alert("Error: GitHub User Not Found");
+        alert("Error: City not found, please try again");
       }
     })
     .catch(function (error) {
-      alert("Unable to connect to GitHub");
+      alert("Unable to connect");
     });
 };
 
