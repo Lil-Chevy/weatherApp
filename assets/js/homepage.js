@@ -34,12 +34,24 @@ var buttonClickHandler = function (event) {
   }
 };
 
+var oneCall =
+  "https://api.openweathermap.org/data/2.5/onecall?lat=-84.388&lon=33.749&appid=1316a61f66911f3f535e71a6a7e7fc1f";
+
 var getUserRepos = function (user) {
   // format the github api url
+  // !!!! add CNT=6 for number of days
   var apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" +
+    "https://api.openweathermap.org/data/2.5/weather?&units=imperial&cnt=6&q=" +
     user +
-    ",us&appid=4faae247520c12ef60154936f5f00888";
+    ",us&appid=1316a61f66911f3f535e71a6a7e7fc1f";
+
+  // new guy
+  fetch(oneCall).then(function (response) {
+    // request was successful
+    console.log(response);
+  });
+
+  // end new guy
 
   // make a get request to url
   fetch(apiUrl)
