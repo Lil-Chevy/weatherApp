@@ -45,13 +45,46 @@ var getUserRepos = function (user) {
     user +
     ",us&appid=1316a61f66911f3f535e71a6a7e7fc1f";
 
-  // new guy
+  // ONE CALL API URL
   fetch(oneCall).then(function (response) {
     // request was successful
-    console.log(response);
+    console.log("<<<<<RESPONSE>>>>>>>>", response);
+    response.json().then(function (data) {
+      console.log("<<<<ONE CALL fetched = DATA>>>>", data);
+      var uvIndex = data.daily[0].uvi;
+      console.log("<<<<<<<UV INDEX>>>>>>", uvIndex);
+      var uvIndexCard = document.createElement("div");
+      uvIndexCard.classList = "uv-index";
+      repoContainerEl.appendChild(uvIndexCard);
+      uvIndexCard.innerHTML =
+        "UV Index: " +
+        "<div>" +
+        "<span class='" +
+        color() +
+        "'>" +
+        uvIndex +
+        "</span>" +
+        "</div>";
+      function color() {
+        if (uvIndex >= 0 && uvIndex <= 2) {
+          return "green";
+        }
+        if (uvIndex >= 3 && uvIndex <= 5) {
+          return "yellow";
+        }
+        if (uvIndex >= 6 && uvIndex <= 7) {
+          return "orange";
+        }
+        if (uvIndex >= 8 && uvIndex <= 10) {
+          return "red";
+        }
+        if (uvIndex >= 11) {
+          return "purple";
+        }
+        console.log(color);
+      }
+    });
   });
-
-  // end new guy
 
   // make a get request to url
   fetch(apiUrl)
