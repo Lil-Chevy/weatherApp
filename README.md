@@ -1,10 +1,9 @@
-#Weather App
+#Weather Dashboard
 ![screenshot](./assets/images/screenshot.PNG)
-![screenshot](./assets/images/acceptanceCriteria.PNG)
 
 ## Purpose
 
-To help users find current weather in locations of their choosing.
+To help users find current weather in locations of their choosing, as well as a 5 day advanced forecast!
 
 ## Deployed Application Url
 
