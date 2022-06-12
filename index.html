@@ -18,7 +18,7 @@
 
   <body class="flex-column min-100-vh">
     <header class="hero">
-      <h1 class="app-title"><i class="fab fa-github"></i> Weather Dashboard</h1>
+      <h1 class="app-title">Weather Dashboard</h1>
     </header>
 
     <main class="flex-row justify-space-between">
@@ -36,15 +36,6 @@
             <button type="submit" class="btn">Search</button>
           </form>
         </div>
-
-        <div class="card">
-          <h3 class="card-header text-uppercase">Search By Topic</h3>
-          <div id="language-buttons" class="card-body">
-            <button data-language="javascript" class="btn">JavaScript</button>
-            <button data-language="html" class="btn">HTML</button>
-            <button data-language="css" class="btn">CSS</button>
-          </div>
-        </div>
       </div>
 
       <div class="col-12 col-md-8">
@@ -52,6 +43,7 @@
           Todays Forecast: <span id="repo-search-term"></span>
         </h2>
         <div id="repos-container" class="list-group"></div>
+        <section id="small-cards"></section>
       </div>
     </main>
 

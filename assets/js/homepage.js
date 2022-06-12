@@ -3,6 +3,7 @@ var languageButtonsEl = document.querySelector("#language-buttons");
 var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
+var smallCardsEl = document.querySelector("#small-cards");
 
 var formSubmitHandler = function (event) {
   // prevent page from refreshing
@@ -34,57 +35,12 @@ var buttonClickHandler = function (event) {
   }
 };
 
-var oneCall =
-  "https://api.openweathermap.org/data/2.5/onecall?lat=-84.388&lon=33.749&appid=1316a61f66911f3f535e71a6a7e7fc1f";
-
 var getUserRepos = function (user) {
   // format the github api url
-  // !!!! add CNT=6 for number of days
   var apiUrl =
     "https://api.openweathermap.org/data/2.5/weather?&units=imperial&cnt=6&q=" +
     user +
     ",us&appid=1316a61f66911f3f535e71a6a7e7fc1f";
-
-  // ONE CALL API URL
-  fetch(oneCall).then(function (response) {
-    // request was successful
-    console.log("<<<<<RESPONSE>>>>>>>>", response);
-    response.json().then(function (data) {
-      console.log("<<<<ONE CALL fetched = DATA>>>>", data);
-      var uvIndex = data.daily[0].uvi;
-      console.log("<<<<<<<UV INDEX>>>>>>", uvIndex);
-      var uvIndexCard = document.createElement("div");
-      uvIndexCard.classList = "uv-index";
-      repoContainerEl.appendChild(uvIndexCard);
-      uvIndexCard.innerHTML =
-        "UV Index: " +
-        "<div>" +
-        "<span class='" +
-        color() +
-        "'>" +
-        uvIndex +
-        "</span>" +
-        "</div>";
-      function color() {
-        if (uvIndex >= 0 && uvIndex <= 2) {
-          return "green";
-        }
-        if (uvIndex >= 3 && uvIndex <= 5) {
-          return "yellow";
-        }
-        if (uvIndex >= 6 && uvIndex <= 7) {
-          return "orange";
-        }
-        if (uvIndex >= 8 && uvIndex <= 10) {
-          return "red";
-        }
-        if (uvIndex >= 11) {
-          return "purple";
-        }
-        console.log(color);
-      }
-    });
-  });
 
   // make a get request to url
   fetch(apiUrl)
@@ -94,11 +50,6 @@ var getUserRepos = function (user) {
         console.log(response);
         response.json().then(function (data) {
           console.log("<<<<apiUrl fetched = DATA>>>>", data);
-          // information to append for cards
-          console.log("temp: ", data.main.temp + " F");
-          console.log("wind: ", data.wind.speed + " MPH");
-          console.log("Humidity: ", data.main.humidity + " %");
-          console.log("weather: ", data.weather[0].description);
           displayRepos(data, user);
           // appending weather card
           var weatherCard = document.createElement("card");
@@ -117,7 +68,7 @@ var getUserRepos = function (user) {
           var tempBox = document.createElement("div");
           tempBox.classList = "tempBox";
           weatherCard.appendChild(tempBox);
-          tempBox.innerHTML = "temp: " + data.main.temp + " f";
+          tempBox.innerHTML = "temp: " + data.main.temp + " F";
           // appending wind speed
           var windBox = document.createElement("div");
           windBox.classList = "windBox";
@@ -128,6 +79,105 @@ var getUserRepos = function (user) {
           humidBox.classList = "humidBox";
           weatherCard.appendChild(humidBox);
           humidBox.innerHTML = "Humidity: " + data.main.humidity + "%";
+          // lat and lon to push to array for coordinates
+
+          var apiArray = {
+            lat: [],
+            lon: [],
+          };
+          var lat = data.coord.lat;
+          var lon = data.coord.lon;
+          // !!!!push to array
+          function arrayPushLat() {
+            return apiArray.lat.push(lat);
+          }
+          arrayPushLat();
+          function arrayPushLon() {
+            return apiArray.lon.push(lon);
+          }
+          arrayPushLon();
+
+          var oneCall =
+            "https://api.openweathermap.org/data/2.5/onecall?&units=imperial&lat=" +
+            apiArray.lat +
+            "&lon=" +
+            apiArray.lon +
+            "&appid=1316a61f66911f3f535e71a6a7e7fc1f";
+
+          fetch(oneCall).then(function (response) {
+            // request was successful
+            console.log("<<<<<RESPONSE>>>>>>>>", response);
+            response.json().then(function (data) {
+              console.log("<<<<ONE CALL fetched = DATA>>>>", data);
+              var uvIndex = data.daily[0].uvi;
+              var uvIndexCard = document.createElement("div");
+              uvIndexCard.classList = "uv-index";
+              repoContainerEl.appendChild(uvIndexCard);
+              uvIndexCard.innerHTML =
+                "UV Index: " +
+                "<div>" +
+                "<span class='" +
+                color() +
+                "'>" +
+                uvIndex +
+                "</span>" +
+                "</div>";
+              // adding boxes for smaller cards
+              appendBoxes();
+
+              // function to add information from data to cards.
+              function addInformation() {
+                for (var i = 0; i < 5; i++) {
+                  // dynamic icon add in
+
+                  var dynamicAdd = document.getElementById("small-card" + i);
+                  var iconSmallBox = document.createElement("div");
+                  iconSmallBox.classList = "iconSmallBox";
+                  dynamicAdd.appendChild(iconSmallBox);
+                  var smallIcons = data.daily[i].weather[0].icon;
+                  var insertSmallIcon =
+                    "http://openweathermap.org/img/wn/" +
+                    smallIcons +
+                    "@2x.png";
+                  iconSmallBox.innerHTML = "<img src=" + insertSmallIcon + ">";
+                  // dynamic temp add
+                  var maxTempBox = document.createElement("div");
+                  maxTempBox.classList = "maxTempBox";
+                  dynamicAdd.appendChild(maxTempBox);
+                  var maxTemp = "Max Temp: " + data.daily[i].temp.max + "F";
+                  maxTempBox.innerHTML = maxTemp;
+                  //dynamic wind addition
+                  var smallWindBox = document.createElement("div");
+                  smallWindBox.classList = "smallWindBox";
+                  dynamicAdd.appendChild(smallWindBox);
+                  var smallWind = data.daily[i].wind_speed + " MPH";
+                  smallWindBox.innerHTML = smallWind;
+                  // Humidity dynamic add
+                  var smallHumidBox = document.createElement("div");
+                  smallHumidBox.classList = "smallhumidBox";
+                  dynamicAdd.appendChild(smallHumidBox);
+                  var smallHumid = "Humidity: " + data.daily[i].humidity + " %";
+                  smallHumidBox.innerHTML = smallHumid;
+                }
+              }
+              addInformation();
+              // uv index color function
+              function color() {
+                if (uvIndex >= 0 && uvIndex <= 2) {
+                  return "green";
+                } else if (uvIndex >= 3 && uvIndex <= 5) {
+                  return "yellow";
+                } else if (uvIndex >= 6 && uvIndex <= 7) {
+                  return "orange";
+                } else if (uvIndex >= 8 && uvIndex <= 10) {
+                  return "red";
+                } else {
+                  return "purple";
+                }
+                console.log(color);
+              }
+            });
+          });
         });
       } else {
         alert("Error: City not found, please try again");
@@ -209,4 +259,11 @@ var displayRepos = function (repos, searchTerm) {
 
 // add event listeners to form and button container
 userFormEl.addEventListener("submit", formSubmitHandler);
-languageButtonsEl.addEventListener("click", buttonClickHandler);
+
+function appendBoxes() {
+  for (var i = 0; i < 5; i++) {
+    var smallCardsBox = document.createElement("div");
+    smallCardsBox.setAttribute("id", "small-card" + [i]);
+    smallCardsEl.append(smallCardsBox);
+  }
+}

@@ -1,5 +1,5 @@
 :root {
-  --primary: #ccdad1;
+  --primary: white;
   --secondary: #9caea9;
   --tertiary: #788585;
   --light-dark: #6f6866;
@@ -29,7 +29,7 @@ h5,
 h6 {
   font-weight: 700;
   margin: 0;
-  color: var(--dark);
+  color: black;
   line-height: 1.25;
 }
 
@@ -53,8 +53,7 @@ p {
   color: var(--primary);
   border: none;
   outline: none;
-  background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--dark);
+  background-color: rgb(0, 118, 245);
   transform: translate(-1px, -1px);
 }
 
@@ -94,8 +93,12 @@ p {
 
 .hero {
   padding: 3% 4%;
-  background-color: var(--dark);
-  color: var(--primary);
+  background: rgb(0, 119, 193);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 119, 193, 1) 54%,
+    rgba(2, 0, 36, 1) 98%
+  );
 }
 
 .hero p {
@@ -104,12 +107,9 @@ p {
 
 .app-title {
   font-size: 3rem;
-  background-color: var(--primary);
-  color: var(--dark);
+  text-align: center;
+  color: white;
   padding: 0 10px;
-  display: inline-block;
-  border-radius: var(--border-radius);
-  box-shadow: 6px 5px var(--light-dark);
 }
 
 .list-group {
@@ -148,13 +148,14 @@ p {
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
+  border-bottom: 3px solid var(--dark);
   border-radius: var(--border-radius);
 }
 
 .card-header {
-  color: var(--primary);
-  background-color: var(--dark);
+  color: black;
+  font-size: xx-large;
+  background-color: var(--primary);
   padding: 2.5%;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
@@ -164,7 +165,7 @@ p {
 }
 
 .list-group {
-  border: 5px solid;
+  border: 2px solid;
 }
 
 .iconBox,
@@ -174,21 +175,39 @@ p {
 .uv-index {
   margin-left: 25px;
 }
-
+.uv-index {
+  display: flex;
+  flex-direction: row;
+}
 .green {
+  padding: 0, 2px;
+  border-radius: 10%;
+  color: white;
   background-color: green;
 }
 .yellow {
+  padding: 0, 2px;
+  border-radius: 10%;
+  color: white;
   background-color: yellow;
 }
 .orange {
+  padding: 0, 2px;
+  border-radius: 10%;
+  color: white;
   background-color: orange;
 }
 .red {
+  padding: 0, 2px;
+  border-radius: 10%;
+  color: white;
   background-color: red;
 }
 
 .purple {
+  padding: 0, 2px;
+  border-radius: 10%;
+  color: white;
   background-color: purple;
 }
 
@@ -525,4 +544,20 @@ p {
   .col-xl-12 {
     flex: 0 0 100%;
   }
+}
+
+#small-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#small-card0,
+#small-card1,
+#small-card2,
+#small-card3,
+#small-card4 {
+  background-color: #38302e;
+  color: white;
+  padding: 3px;
 }
