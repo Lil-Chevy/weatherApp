@@ -4,6 +4,9 @@ var nameInputEl = document.querySelector("#username");
 var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 var smallCardsEl = document.querySelector("#small-cards");
+var UserInputButton = document.createElement("div");
+
+var buttonStorage = [];
 
 var formSubmitHandler = function (event) {
   // prevent page from refreshing
@@ -14,6 +17,20 @@ var formSubmitHandler = function (event) {
 
   if (username) {
     getUserRepos(username);
+    // push to button storage
+    buttonStorage.unshift(username);
+    // button Box
+    var buttonBox = document.createElement("div");
+    buttonBox.setAttribute("id", "buttonBox" + username);
+    appendButton.appendChild(buttonBox);
+    // button appending
+    var buttonUserInput = document.createElement("button");
+    buttonBox.appendChild(buttonUserInput);
+    buttonUserInput.setAttribute("type", "submit");
+    buttonUserInput.setAttribute("class", "btn");
+    buttonUserInput.innerHTML = username;
+
+    console.log("BUTTON STORAGE", buttonStorage);
 
     // clear old content
     repoContainerEl.textContent = "";

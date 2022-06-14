@@ -42,7 +42,13 @@ p {
   font-size: 1.2rem;
 }
 
-.btn {
+.btn,
+.btn0,
+.btn1,
+.btn2,
+.btn3,
+.btn4,
+.btn5 {
   font-size: 1.3rem;
   text-decoration: none;
   padding: 6px 5px;
@@ -560,4 +566,8 @@ p {
   background-color: #38302e;
   color: white;
   padding: 3px;
+}
+
+#appendButton {
+  text-align: center;
 }

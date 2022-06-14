@@ -9,6 +9,10 @@ To help users find current weather in locations of their choosing, as well as a 
 
 https://lil-chevy.github.io/weatherApp/
 
+## Github Repo URL
+
+https://github.com/Lil-Chevy/weatherApp
+
 ## Contributors
 
 -Jack Nowaczewski
