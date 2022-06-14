@@ -5,6 +5,8 @@ var repoContainerEl = document.querySelector("#repos-container");
 var repoSearchTerm = document.querySelector("#repo-search-term");
 var smallCardsEl = document.querySelector("#small-cards");
 var UserInputButton = document.createElement("div");
+var weatherCardEl = document.getElementsByClassName("weatherCard");
+var SmallCardsFlush = document.getElementById("small-cards");
 
 var buttonStorage = [];
 
@@ -16,6 +18,8 @@ var formSubmitHandler = function (event) {
   var username = nameInputEl.value.trim();
 
   if (username) {
+    weatherCardEl.innerHTML = "";
+    smallCardsEl.innerHTML = "";
     getUserRepos(username);
     // push to button storage
     buttonStorage.unshift(username);
