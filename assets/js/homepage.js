@@ -148,10 +148,18 @@ var getUserRepos = function (user) {
 
               // function to add information from data to cards.
               function addInformation() {
-                for (var i = 0; i < 5; i++) {
+                for (var i = 1; i < 6; i++) {
                   // dynamic icon add in
-
+                  let unixTime = data.daily[i].dt;
+                  const date = new Date(unixTime * 1000);
+                  var timeArray = [];
+                  timeArray.push(date);
+                  console.log(timeArray);
                   var dynamicAdd = document.getElementById("small-card" + i);
+                  var dateBox = document.createElement("div");
+                  dateBox.classList = "dateBox";
+                  dynamicAdd.appendChild(dateBox);
+                  dateBox.innerHTML = date;
                   var iconSmallBox = document.createElement("div");
                   iconSmallBox.classList = "iconSmallBox";
                   dynamicAdd.appendChild(iconSmallBox);
@@ -171,7 +179,7 @@ var getUserRepos = function (user) {
                   var smallWindBox = document.createElement("div");
                   smallWindBox.classList = "smallWindBox";
                   dynamicAdd.appendChild(smallWindBox);
-                  var smallWind = data.daily[i].wind_speed + " MPH";
+                  var smallWind = "Wind: " + data.daily[i].wind_speed + " MPH";
                   smallWindBox.innerHTML = smallWind;
                   // Humidity dynamic add
                   var smallHumidBox = document.createElement("div");
@@ -282,7 +290,7 @@ var displayRepos = function (repos, searchTerm) {
 userFormEl.addEventListener("submit", formSubmitHandler);
 
 function appendBoxes() {
-  for (var i = 0; i < 5; i++) {
+  for (var i = 1; i < 6; i++) {
     var smallCardsBox = document.createElement("div");
     smallCardsBox.setAttribute("id", "small-card" + [i]);
     smallCardsEl.append(smallCardsBox);

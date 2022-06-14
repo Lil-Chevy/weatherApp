@@ -558,11 +558,11 @@ p {
   flex-direction: row;
 }
 
-#small-card0,
 #small-card1,
 #small-card2,
 #small-card3,
-#small-card4 {
+#small-card4,
+#small-card5 {
   background-color: #38302e;
   color: white;
   padding: 3px;
