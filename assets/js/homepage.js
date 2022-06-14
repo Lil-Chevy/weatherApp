@@ -31,7 +31,7 @@ var formSubmitHandler = function (event) {
     var buttonUserInput = document.createElement("button");
     buttonBox.appendChild(buttonUserInput);
     buttonUserInput.setAttribute("type", "submit");
-    buttonUserInput.setAttribute("class", "btn");
+    buttonUserInput.setAttribute("class", "bttn");
     buttonUserInput.innerHTML = username;
 
     console.log("BUTTON STORAGE", buttonStorage);
